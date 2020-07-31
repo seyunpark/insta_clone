@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js_test</title>
+
+    <style>
+        .box{
+            width:200px;
+            height:200px;
+            background:red;
+        }
+
+        .box.on{
+            background : green;
+
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+
+
+
+    <script>
+
+        const userName = "바람개";  //string
+        const age = 26; //number
+        const married = false; //boolean
+        let girlFriend; //undefined
+        const money = null; // object
+
+        console.log(typeof userName);
+        console.log(typeof age);
+        console.log(typeof married);
+        console.log(typeof girlFriend);
+        console.log(typeof money);
+
+        console.log(2-3);
+        console.log(userName === "개");
+        console.log(age < 30);
+
+        if(userName === '바람개')
+        {
+            console.log('일치합니다');
+        }
+        else
+        {
+            console.log('틀립니다');
+        }
+
+        for(i=0;i<5;i++)
+        {
+        console.log("나는 "+i+"다");
+        }
+
+<!--        document.getElementsByClassName('box');-->
+
+        const box = document.querySelector('.box'); // 하나만 선택할때, 맨위의 box를 선택
+<!--        const box = document.querySelectorAll('.box'); // 여러개를 선택할때 모든 box를 선택-->
+        console.log(box)
+        // id 면 # class면 .
+
+        box.addEventListener('click',function()
+        {
+            box.style.background = 'blue';
+        });
+
+
+
+
+
+    </script>
+
+</div>
+
+</body>
+</html>
