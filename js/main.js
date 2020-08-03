@@ -90,7 +90,7 @@ function delegationFunc(e){
             },
             error:function(request,status,error){
                 alert('문제가 발생했습니다.');
-
+                window.location.replace('https://www.naver.com');
             }
         });
 
@@ -114,7 +114,7 @@ function delegationFunc(e){
             },
             error:function(request,status,error){
                 alert('문제가 발생했습니다.');
-
+                window.location.replace('https://www.naver.com');
             }
 
         });
@@ -141,6 +141,7 @@ function delegationFunc(e){
             },
             error:function(request,status,error){
                 alert('문제가 발생했습니다.');
+                window.location.replace('https://www.naver.com');
             }
         })
 
@@ -183,7 +184,11 @@ function resizeFunc(){
 
 function scrollFunc(){
 
-    console.log(pageYOffset);
+    let scrollHeight = pageYOffset + window.innerHeight;
+    let documentHeight = document.body.scrollHeight
+
+    console.log('scrollHeight : ' + scrollHeight);
+    console.log('documentHeight : ' + documentHeight);
 
     if(pageYOffset >= 10){
         header.classList.add('on');
@@ -205,7 +210,45 @@ function scrollFunc(){
 
 
     }
+
+    if(scrollHeight >= documentHeight){
+        let page = document.querySelector('#page').value;
+        document.querySelector('#page').value = parseInt(page) + 1;
+
+        callMorePostAjax(page);
+
+        if( page > 5){
+            return;
+        }
+
+    }
 }
+
+function callMorePostAjax(page){
+
+    if( page > 5){
+        return;
+    }
+    $.ajax({
+        type:'POST',
+        url:'./post.html',
+        data:{
+            'page':page,
+        },
+        dataType:'html',
+        success: addMorePostAjax,
+        error:function(request,status,error){
+                alert('문제가 발생했습니다.');
+                window.location.replace('https://www.naver.com');
+        }
+    })
+}
+
+function addMorePostAjax(data){
+
+    delegation.insertAdjacentHTML('beforeend',data);
+}
+
 
 setTimeout(function()
 {
